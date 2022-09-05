@@ -410,7 +410,7 @@ drawText 1 0 "MiSTer Sys Info" 15 1
 
 old_time_date="$(date +"%H:%M %m/%d/%y")"
 
-drawText 1 10 "${old_cpu_usage}" 1 1
+drawText 1 10 "${old_time_date}" 1 1
 
 old_cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 
@@ -451,7 +451,7 @@ while true; do
 
 time_date="$(date +"%H:%M %m/%d/%y")"
 if [[ "$time_date" != "$old_time_date" ]] ; then
-  drawText 1 10 "${old_time_date}" 1 1
+  drawUpdateText 1 10 "${old_time_date}" 1 1
   old_time_date="${time_date}"
 fi
 
