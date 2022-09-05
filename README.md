@@ -10,5 +10,10 @@ And it looks even better on the @antoniovillena MiSTer
 
 <img width="1160" alt="Screen Shot 2022-09-05 at 12 13 33 AM" src="https://user-images.githubusercontent.com/1751211/188388889-5e814692-ce23-41e2-85a4-bd5df66c2f85.png">
 
+And here it is in action.
+
+https://user-images.githubusercontent.com/1751211/188391804-2bf34544-7c35-4e14-b17b-70890c6a6b13.mp4
+
+
 I would like to thank 
 @venice1200 for the fonts and the installation script and @antoniovillena for the inspiration.
