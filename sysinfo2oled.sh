@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# code written by Ahmad Byagowi for demonstration purposes of a SYS INFO demon for the MiSTer using a SSD1327 OLED module over the i2c bus 
-# Please not the OLED I2C address was modified to 0x3D. For a default configuration please change it to 0x3c
+# code written by Ahmad Byagowi for demonstration purposes of the SSD1327 OLED module over the i2c bus
 
 I2CBUS=2
-DEVADDR=0x3D #defualt is 0x3c
+DEVADDR=0x3D
 
 corenamefile="/tmp/CORENAME"
 
@@ -475,6 +474,7 @@ if [ -z "eth_ip" ] ; then
   eth_ip="none"
 fi
 if [ "eth_ip" != "old_eth_ip" ]; then
+  drawRect 0 73 128 83 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 0 73 "${eth_ip}" 1 1
   old_eth_ip="${eth_ip}"
 fi
@@ -484,12 +484,15 @@ if [ -z "wlan_ip" ] ; then
   wlan_ip="none"
 fi
 if [ "wlan_ip" != "old_wlan_ip" ]; then
+  drawRect 0 95 128 105 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+
   drawUpdateText 0 95 "${wlan_ip}" 1 1
   old_wlan_ip="${wlan_ip}"
 fi
 
 core_name="$(cat ${corenamefile})" 
 if [ "core_name" != "old_core_name" ]; then
+  drawRect 32 120 128 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 8 120 "${core_name}" 1 1  
   old_core_name="${core_name}"
 fi
@@ -497,6 +500,8 @@ fi
 sleep 1
 
 done  
+
+
 
 
 
