@@ -448,7 +448,7 @@ while true; do
 
 cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 if [[ "$cpu_usage" != "$old_cpu_usage" ]] ; then
-  drawRect 48 20 64 30 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+  drawRect 60 20 68 30 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 36 20 "${cpu_usage}" 1 1
   old_cpu_usage="${cpu_usage}"
 fi
@@ -469,7 +469,7 @@ fi
 
 temperature="$(read_temperature)"
 if [[ "$temperature" != "$old_temperature" ]] ; then
-  drawRect 44 50 120 60 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+  #drawRect 44 50 120 60 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 44 50 "${temperature}" 1 1
   old_temperature="${temperature}"
 fi
