@@ -506,7 +506,7 @@ fi
 
 core_name="$(cat ${corenamefile})" 
 if [[ "$core_name" != "$old_core_name" ]] ; then
-  drawRect 40 120 60 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+  drawRect 32 120 128 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 8 120 "${core_name}" 1 1  
   old_core_name="${core_name}"
 fi
