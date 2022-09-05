@@ -406,7 +406,11 @@ init_temp_sensor_default_config
 
 #drawLine 10 10 10 100 10 1
 
-drawText 1 1 "MiSTer Sys Info" 15 1
+drawText 1 0 "MiSTer Sys Info" 15 1
+
+old_time_date="$(date +"%H:%M %m/%d/%y")"
+
+drawText 1 10 "${old_cpu_usage}" 1 1
 
 old_cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 
@@ -445,6 +449,11 @@ drawText 4 110 "CORE:" 8 1 ; drawText 8 120 "${old_core_name}" 1 1
 
 while true; do
 
+time_date="$(date +"%H:%M %m/%d/%y")"
+if [[ "$time_date" != "$old_time_date" ]] ; then
+  drawText 1 10 "${old_time_date}" 1 1
+  old_time_date="${time_date}"
+fi
 
 cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 if [[ "$cpu_usage" != "$old_cpu_usage" ]] ; then
@@ -455,7 +464,7 @@ fi
 
 free_ram="$(free -m | awk 'NR==2{printf "%sMB(%.f%%)\n", $2,$3*100/$2 }')"
 if [[ "$free_ram" != "$old_free_ram" ]] ; then
-  drawRect 36 30 120 40 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+  drawRect 60 30 84 40 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 36 30 "${free_ram}" 1 1
   old_free_ram="${free_ram}"
 fi
@@ -497,7 +506,7 @@ fi
 
 core_name="$(cat ${corenamefile})" 
 if [[ "$core_name" != "$old_core_name" ]] ; then
-  drawRect 8 120 128 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+  drawRect 40 120 60 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 8 120 "${core_name}" 1 1  
   old_core_name="${core_name}"
 fi
