@@ -451,7 +451,7 @@ while true; do
 
 time_date="$(date +"%H:%M  %m/%d/%y")"
 if [[ "$time_date" != "$old_time_date" ]] ; then
-  drawUpdateText 1 10 "${old_time_date}" 1 1
+  drawUpdateText 1 10 "${time_date}" 1 1
   old_time_date="${time_date}"
 fi
 
