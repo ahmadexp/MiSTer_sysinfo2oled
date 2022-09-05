@@ -408,7 +408,7 @@ init_temp_sensor_default_config
 
 drawText 1 0 "MiSTer Sys Info" 15 1
 
-old_time_date="$(date +"%H:%M %m/%d/%y")"
+old_time_date="$(date +"%H:%M  %m/%d/%y")"
 
 drawText 1 10 "${old_time_date}" 1 1
 
@@ -449,7 +449,7 @@ drawText 4 110 "CORE:" 8 1 ; drawText 8 120 "${old_core_name}" 1 1
 
 while true; do
 
-time_date="$(date +"%H:%M %m/%d/%y")"
+time_date="$(date +"%H:%M  %m/%d/%y")"
 if [[ "$time_date" != "$old_time_date" ]] ; then
   drawUpdateText 1 10 "${old_time_date}" 1 1
   old_time_date="${time_date}"
