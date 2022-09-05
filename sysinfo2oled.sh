@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# code written by Ahmad Byagowi for demonstration purposes of the SSD1327 OLED module over the i2c bus
+# code written by Ahmad Byagowi for demonstration purposes of a SYS INFO demon for the MiSTer using a SSD1327 OLED module over the i2c bus 
+# Please not the OLED I2C address was modified to 0x3D. For a default configuration please change it to 0x3c
 
 I2CBUS=2
-DEVADDR=0x3D
+DEVADDR=0x3D #defualt is 0x3c
 
 corenamefile="/tmp/CORENAME"
 
