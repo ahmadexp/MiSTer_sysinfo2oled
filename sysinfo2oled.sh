@@ -467,12 +467,12 @@ fi
 
 if [[ $ticker -eq 0 ]] ; then
    ticker=1
-   drawRect 47 14 51 18 0 1
+   drawRect 47 13 51 17 0 1
    drawRect 47 10 51 14 15 1
 else
    ticker=0
    drawRect 47 10 51 14 0 1
-   drawRect 47 14 51 18 15 1
+   drawRect 47 13 51 17 15 1
 fi
 
 
