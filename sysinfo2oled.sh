@@ -389,11 +389,9 @@ function drawUpdateText() { #startX startY string color instant
     done 
   done
   local endTextX=$(( $startX + $(( ${textlen} * 8 )) )) #blank out the rest of the line to erase in case of longer previous text
-  echo $endTextX
-  #for (( c=$endTextX; c<129; c++ )); do
-   # drawUpdateByteAsCol $c $startY 0xFF 0x00 $5
-  #done
-  #drawRect $endTextX $startY 128 $(( $startY + 8 )) 0x00 $5
+  for (( c=$endTextX; c<129; c++ )); do
+    drawUpdateByteAsCol $c $2 0xFF 0x00 $5
+  done
 }
 
 
