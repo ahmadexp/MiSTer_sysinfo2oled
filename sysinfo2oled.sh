@@ -486,7 +486,7 @@ if [[ "$cpu_usage" != "$old_cpu_usage" ]] ; then
   old_cpu_usage="${cpu_usage}"
 fi
 
-tick()
+tick
 
 free_ram="$(free -m | awk 'NR==2{printf "%sMB(%.f%%)\n", $2,$3*100/$2 }')"
 if [[ "$free_ram" != "$old_free_ram" ]] ; then
@@ -495,7 +495,7 @@ if [[ "$free_ram" != "$old_free_ram" ]] ; then
   old_free_ram="${free_ram}"
 fi
 
-tick()
+tick
 
 free_ssd="$(df -h | awk 'FNR==3 {printf "%dGB(%s)",$2,$5}')"
 if [[ "$free_ssd" != "$old_free_ssd" ]] ; then
@@ -504,7 +504,7 @@ if [[ "$free_ssd" != "$old_free_ssd" ]] ; then
   old_free_ssd="${free_ssd}"
 fi
 
-tick()
+tick
 
 temperature="$(read_temperature)"
 if [[ "$temperature" != "$old_temperature" ]] ; then
@@ -514,7 +514,7 @@ if [[ "$temperature" != "$old_temperature" ]] ; then
   drawRect 100 50 103 53 1 1 ; drawPixel 101 51 0 1 #draw centigrade symbol
 fi
 
-tick()
+tick
 
 eth_ip="$(/sbin/ip -4 -o addr show dev eth0| awk '{split($4,a,"/");print a[1]}')" 
 if [[ -z "$eth_ip" ]] ; then
@@ -526,7 +526,7 @@ if [[ "$eth_ip" != "$old_eth_ip" ]] ; then
   old_eth_ip="${eth_ip}"
 fi
 
-tick()
+tick
 
 wlan_ip="$(/sbin/ip -4 -o addr show dev wlan0| awk '{split($4,a,"/");print a[1]}')"
 if [[ -z "$wlan_ip" ]] ; then
@@ -538,7 +538,7 @@ if [[ "$wlan_ip" != "$old_wlan_ip" ]] ; then
   old_wlan_ip="${wlan_ip}"
 fi
 
-tick()
+tick
 
 core_name="$(cat ${corenamefile})" 
 if [[ "$core_name" != "$old_core_name" ]] ; then
@@ -547,7 +547,7 @@ if [[ "$core_name" != "$old_core_name" ]] ; then
   old_core_name="${core_name}"
 fi
 
-tick()
+tick
 
 done  
 
