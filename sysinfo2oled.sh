@@ -389,7 +389,7 @@ function drawUpdateText() { #startX startY string color instant
     done 
   done
   local endTextX=$(( $startX + $(( $textlen * 8 )) )) #blank out the rest of the line to erase in case of longer previous text
-  for (( c=$endText; c<129; c++ )); do
+  for (( c=$endTextX; c<129; c++ )); do
     drawUpdateByteAsCol $c $startY 0xFF 0 $5
   done
 }
