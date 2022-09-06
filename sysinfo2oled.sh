@@ -390,7 +390,7 @@ function drawUpdateText() { #startX startY string color instant
   done
   local endTextX=$(( $startX + $(( ${textlen} * 8 )) )) #blank out the rest of the line to erase in case of longer previous text
   for (( c=endText; c<129; c++)); do
-    drawUpdateByteAsCol c startY 0xFF 0 $5
+    drawUpdateByteAsCol $c $startY 0xFF 0 $5
   done
 }
 
@@ -455,7 +455,7 @@ while true; do
 
 time_date="$(date +"%H:%M  %m/%d/%y")"
 if [[ "$time_date" != "$old_time_date" ]] ; then
-#  drawUpdateText 1 10 "${time_date}" 1 1
+  drawUpdateText 1 10 "${time_date}" 1 1
   old_time_date="${time_date}"
 fi
 
