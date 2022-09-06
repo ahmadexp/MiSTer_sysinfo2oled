@@ -376,7 +376,7 @@ function drawText() { #startX startY string color instant
 }
 
 function drawUpdateText() { #startX startY string color instant
-  local a=0; local b=0; local achar=0; local charp=0; local charout="";
+  local a=0; local b=0; local c=0; local achar=0; local charp=0; local charout="";
   local text=${3}
   local textlen=${#text}
   for (( a=0; a<${textlen}; a++ )); do
