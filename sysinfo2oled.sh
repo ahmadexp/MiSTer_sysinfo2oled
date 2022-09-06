@@ -388,6 +388,10 @@ function drawUpdateText() { #startX startY string color instant
       drawUpdateByteAsCol $(( $1 + $b + $(( $a << 3 )) )) $2 ${font[charp+b]} $4 $5
     done 
   done
+  local endTextX= $(( $startX + $(( $textlen * 8 )) ))
+  for (( c=endText; c<129; c++)); do
+    drawUpdateByteAsCol c startY 0xFF 0 $5
+  done
 }
 
 
@@ -451,34 +455,34 @@ while true; do
 
 time_date="$(date +"%H:%M  %m/%d/%y")"
 if [[ "$time_date" != "$old_time_date" ]] ; then
-  drawUpdateText 1 10 "${time_date}" 1 1
+# drawUpdateText 1 10 "${time_date}" 1 1
   old_time_date="${time_date}"
 fi
 
 cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 if [[ "$cpu_usage" != "$old_cpu_usage" ]] ; then
-  drawRect 60 20 68 30 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+# drawRect 60 20 68 30 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 36 20 "${cpu_usage}" 1 1
   old_cpu_usage="${cpu_usage}"
 fi
 
 free_ram="$(free -m | awk 'NR==2{printf "%sMB(%.f%%)\n", $2,$3*100/$2 }')"
 if [[ "$free_ram" != "$old_free_ram" ]] ; then
-  drawRect 60 30 84 40 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+# drawRect 60 30 84 40 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 36 30 "${free_ram}" 1 1
   old_free_ram="${free_ram}"
 fi
 
 free_ssd="$(df -h | awk 'FNR==3 {printf "%dGB(%s)",$2,$5}')"
 if [[ "$free_ssd" != "$old_free_ssd" ]] ; then
-  drawRect 36 40 120 50 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+# drawRect 36 40 120 50 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 36 40 "${free_ssd}" 1 1
   old_free_ssd="${free_ssd}"
 fi
 
 temperature="$(read_temperature)"
 if [[ "$temperature" != "$old_temperature" ]] ; then
-  #drawRect 44 50 120 60 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+# drawRect 44 50 120 60 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 44 50 "${temperature}" 1 1
   old_temperature="${temperature}"
 fi
@@ -488,7 +492,7 @@ if [[ -z "$eth_ip" ]] ; then
   eth_ip="none"
 fi
 if [[ "$eth_ip" != "$old_eth_ip" ]] ; then
-  drawRect 0 73 128 83 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+# drawRect 0 73 128 83 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 0 73 "${eth_ip}" 1 1
   old_eth_ip="${eth_ip}"
 fi
@@ -498,15 +502,14 @@ if [[ -z "$wlan_ip" ]] ; then
   wlan_ip="none"
 fi
 if [[ "$wlan_ip" != "$old_wlan_ip" ]] ; then
-  drawRect 0 95 128 105 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
-
+# drawRect 0 95 128 105 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 0 95 "${wlan_ip}" 1 1
   old_wlan_ip="${wlan_ip}"
 fi
 
 core_name="$(cat ${corenamefile})" 
 if [[ "$core_name" != "$old_core_name" ]] ; then
-  drawRect 32 120 128 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
+# drawRect 32 120 128 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 8 120 "${core_name}" 1 1  
   old_core_name="${core_name}"
 fi
