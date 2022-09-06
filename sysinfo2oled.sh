@@ -393,7 +393,7 @@ function drawUpdateText() { #startX startY string color instant
   #for (( c=$endTextX; c<129; c++ )); do
    # drawUpdateByteAsCol $c $startY 0xFF 0x00 $5
   #done
-  drawRect $endTextX $startY 128 $(( $startY + 8 )) 0x00 $5
+  #drawRect $endTextX $startY 128 $(( $startY + 8 )) 0x00 $5
 }
 
 
