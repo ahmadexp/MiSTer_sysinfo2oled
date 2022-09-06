@@ -408,9 +408,11 @@ init_temp_sensor_default_config
 
 drawText 1 0 "MiSTer Sys Info" 15 1
 
-old_time_date="$(date +"%H:%M  %m/%d/%y")"
+old_time_str="$(date +"%H:%M  %m/%d/%y")"
+old_date_str="$(date +"%m/%d/%y")"
 
-drawText 1 10 "${old_time_date}" 1 1
+drawText 1 10 "${old_time_str}" 1 1
+drawText 57 10 "${old_date_str}" 1 1
 
 old_cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 
@@ -448,13 +450,29 @@ old_core_name="$(cat ${corenamefile})"
 drawText 4 110 "CORE:" 8 1 ; drawText 8 120 "${old_core_name}" 1 1
 
 
+ticker=0;
+
 while true; do
 
-time_date="$(date +"%H:%M  %m/%d/%y")"
-if [[ "$time_date" != "$old_time_date" ]] ; then
-  drawUpdateText 1 10 "${time_date}" 1 1
-  old_time_date="${time_date}"
+time_str="$(date +"%H:%M  %m/%d/%y")"
+date_str="$(date +"%m/%d/%y")"
+if [[ "$time_str" != "$old_time_str" ]] ; then
+  drawUpdateText 1 10 "${time_str}" 1 1
+  old_time_date="${time_str}"
 fi
+if [[ "$date_str" != "$old_date_str" ]] ; then
+  drawUpdateText 57 10 "${date_str}" 1 1
+  old_date_str="${date_str}"
+fi
+
+if [[ $ticker -eq 0 ]] ; then
+   ticker=1
+   drawRect 47 12 51 16 15 1
+else
+   ticker=0
+   drawRect 47 12 51 16 0 1
+fi
+
 
 cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 if [[ "$cpu_usage" != "$old_cpu_usage" ]] ; then
