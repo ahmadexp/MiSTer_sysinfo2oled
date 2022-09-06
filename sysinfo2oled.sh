@@ -320,20 +320,6 @@ else
 fi
 }
 
-drawKite(){
-drawLine 10 10 100 100 10 1
-drawLine 10 10 100 95 10 1
-drawLine 10 10 100 90 10 1
-drawLine 10 10 100 10 10 1
-drawLine 10 10 10 100 10 1
-drawLine 100 10 10 100 10 1
-drawLine 90 10 10 90 10 1
-drawLine 95 10 10 95 10 1
-drawLine 10 10 95 100 10 1
-drawLine 10 10 90 100 10 1
-}
-
-
 drawByteAsRow(){ #startX startY byte color instant
   for ((i=0;i<8;i++)) do
     if [ $(( $3 & $(( 0x01 << $i )) )) -ne 0 ]; then
@@ -403,12 +389,6 @@ blankBuffer
 loadBuffer
 
 init_temp_sensor_default_config
-
-#drawKite
-
-#drawRect 10 10 100 20 10 1
-
-#drawLine 10 10 10 100 10 1
 
 drawText 1 0 "MiSTer Sys Info" 15 1
 
