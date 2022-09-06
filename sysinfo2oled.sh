@@ -388,7 +388,7 @@ function drawUpdateText() { #startX startY string color instant
       drawUpdateByteAsCol $(( $1 + $b + $(( $a << 3 )) )) $2 ${font[charp+b]} $4 $5
     done 
   done
-  local endTextX=$(( $startX + $(( ${textlen} * 8 )) )) #blank out the rest of the line to erase in case of longer previous text
+  local endTextX=$(( $1 + $(( ${textlen} * 8 )) )) #blank out the rest of the line to erase in case of longer previous text
   for (( c=$endTextX; c<129; c++ )); do
     drawUpdateByteAsCol $c $2 0xFF 0x00 $5
   done
