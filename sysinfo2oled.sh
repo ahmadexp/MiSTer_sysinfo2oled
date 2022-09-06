@@ -399,11 +399,11 @@ function drawUpdateTextBlankRest() { #startX startY string color instant
 function tick(){
 if [[ $ticker -eq 0 ]] ; then
    ticker=1
-   drawRect 46 14 50 17 1 1
+   drawRect 46 14 50 17 0 1
    drawRect 46 11 50 14 15 1
 else
    ticker=0
-   drawRect 46 11 50 14 1 1
+   drawRect 46 11 50 14 0 1
    drawRect 46 14 50 17 15 1
 fi
 }
