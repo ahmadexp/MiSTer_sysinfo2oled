@@ -411,6 +411,7 @@ drawText 2 40 "SSD:" 12 1 ; drawText 36 40 "${old_free_ssd}" 1 1
 old_temperature="$(read_temperature)"
 
 drawText 2 50 "TEMP:" 12 1 ; drawText 44 50 "${old_temperature}" 1 1
+drawRect 100 50 103 53 1 1 ; drawPixel 101 51 0 1 #draw centigrade symbol 
 
 old_eth_ip="$(/sbin/ip -4 -o addr show dev eth0| awk '{split($4,a,"/");print a[1]}')" 
 if [[ -z "$old_eth_ip" ]] ; then
@@ -465,6 +466,7 @@ if [[ "$temperature" != "$old_temperature" ]] ; then
 # drawRect 44 50 120 60 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateText 44 50 "${temperature}" 1 1
   old_temperature="${temperature}"
+  drawRect 100 50 103 53 1 1 ; drawPixel 101 51 0 1 #draw centigrade symbol
 fi
 
 eth_ip="$(/sbin/ip -4 -o addr show dev eth0| awk '{split($4,a,"/");print a[1]}')" 
