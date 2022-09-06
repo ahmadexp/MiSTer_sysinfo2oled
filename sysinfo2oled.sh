@@ -396,6 +396,18 @@ function drawUpdateTextBlankRest() { #startX startY string color instant
   done
 }
 
+function tick(){
+if [[ $ticker -eq 0 ]] ; then
+   ticker=1
+   drawRect 46 14 50 17 1 1
+   drawRect 46 11 50 14 15 1
+else
+   ticker=0
+   drawRect 46 11 50 14 1 1
+   drawRect 46 14 50 17 15 1
+fi
+}
+
 
 display_off
 init_display
@@ -465,16 +477,7 @@ if [[ "$date_str" != "$old_date_str" ]] ; then
   old_date_str="${date_str}"
 fi
 
-if [[ $ticker -eq 0 ]] ; then
-   ticker=1
-   drawRect 47 12 51 16 0 1
-   drawRect 47 10 51 14 15 1
-else
-   ticker=0
-   drawRect 47 10 51 14 0 1
-   drawRect 47 12 51 16 15 1
-fi
-
+tick
 
 cpu_usage="$(top -n 1 | awk 'FNR==2 {printf "%s",$2}')"
 if [[ "$cpu_usage" != "$old_cpu_usage" ]] ; then
@@ -483,12 +486,16 @@ if [[ "$cpu_usage" != "$old_cpu_usage" ]] ; then
   old_cpu_usage="${cpu_usage}"
 fi
 
+tick()
+
 free_ram="$(free -m | awk 'NR==2{printf "%sMB(%.f%%)\n", $2,$3*100/$2 }')"
 if [[ "$free_ram" != "$old_free_ram" ]] ; then
 # drawRect 60 30 84 40 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
   drawUpdateTextBlankRest 36 30 "${free_ram}" 1 1
   old_free_ram="${free_ram}"
 fi
+
+tick()
 
 free_ssd="$(df -h | awk 'FNR==3 {printf "%dGB(%s)",$2,$5}')"
 if [[ "$free_ssd" != "$old_free_ssd" ]] ; then
@@ -497,6 +504,8 @@ if [[ "$free_ssd" != "$old_free_ssd" ]] ; then
   old_free_ssd="${free_ssd}"
 fi
 
+tick()
+
 temperature="$(read_temperature)"
 if [[ "$temperature" != "$old_temperature" ]] ; then
 # drawRect 44 50 120 60 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
@@ -504,6 +513,8 @@ if [[ "$temperature" != "$old_temperature" ]] ; then
   old_temperature="${temperature}"
   drawRect 100 50 103 53 1 1 ; drawPixel 101 51 0 1 #draw centigrade symbol
 fi
+
+tick()
 
 eth_ip="$(/sbin/ip -4 -o addr show dev eth0| awk '{split($4,a,"/");print a[1]}')" 
 if [[ -z "$eth_ip" ]] ; then
@@ -515,6 +526,8 @@ if [[ "$eth_ip" != "$old_eth_ip" ]] ; then
   old_eth_ip="${eth_ip}"
 fi
 
+tick()
+
 wlan_ip="$(/sbin/ip -4 -o addr show dev wlan0| awk '{split($4,a,"/");print a[1]}')"
 if [[ -z "$wlan_ip" ]] ; then
   wlan_ip="none"
@@ -525,6 +538,8 @@ if [[ "$wlan_ip" != "$old_wlan_ip" ]] ; then
   old_wlan_ip="${wlan_ip}"
 fi
 
+tick()
+
 core_name="$(cat ${corenamefile})" 
 if [[ "$core_name" != "$old_core_name" ]] ; then
 # drawRect 32 120 128 128 0x00 1     #draw a dark rectagle on the text area to erase previous core name. Icrease size if needed.
@@ -532,7 +547,7 @@ if [[ "$core_name" != "$old_core_name" ]] ; then
   old_core_name="${core_name}"
 fi
 
-sleep .1
+tick()
 
 done  
 
