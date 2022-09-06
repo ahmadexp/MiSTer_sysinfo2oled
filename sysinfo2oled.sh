@@ -406,9 +406,9 @@ loadBuffer
 
 init_temp_sensor_default_config
 
-drawText 1 0 "MiSTer Sys Info" 15 1
+drawText 1 0 "MiSTer SYSINFO" 15 1
 
-old_time_str="$(date +"%H:%M  %m/%d/%y")"
+old_time_str="$(date +"%H:%M")"
 old_date_str="$(date +"%m/%d/%y")"
 
 drawText 1 10 "${old_time_str}" 1 1
@@ -454,7 +454,7 @@ ticker=0;
 
 while true; do
 
-time_str="$(date +"%H:%M  %m/%d/%y")"
+time_str="$(date +"%H:%M")"
 date_str="$(date +"%m/%d/%y")"
 if [[ "$time_str" != "$old_time_str" ]] ; then
   drawUpdateText 1 10 "${time_str}" 1 1
