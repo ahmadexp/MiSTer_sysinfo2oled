@@ -1,7 +1,7 @@
 # MiSTer_SYSINFO
 System Info for MiSTer
 
-This is a simple demon that can show various sys info of the MiSTer on an SSD1327 OLED connected via the i2c bus.
+This is a simple daemon that can show various sys info of the MiSTer on an SSD1327 OLED connected via the i2c bus.
 Here is how it looks like
 
 <img width="1160" alt="Screen Shot 2022-09-05 at 12 13 44 AM" src="https://user-images.githubusercontent.com/1751211/188388651-beebe46e-f29a-439e-bc1e-79092cb1ccef.png">
