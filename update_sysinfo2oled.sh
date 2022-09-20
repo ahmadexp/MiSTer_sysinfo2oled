@@ -5,7 +5,7 @@
 SYSINFO2OLED_PATH="/media/fat/sysinfo2oled"
 USERSTARTUP="/media/fat/linux/user-startup.sh"
 USERSTARTUPTPL="/media/fat/linux/_user-startup.sh"
-INITSCRIPT="${SYSINFO2OLED_PATH}/sysinfo2oled.sh"
+INITSCRIPT="${SYSINFO2OLED_PATH}/S60sysinfo2oled"
 DAEMONNAME="sysinfo2oled.sh"
 
 # Stop an already running daemon
